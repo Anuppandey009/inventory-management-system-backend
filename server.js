@@ -20,20 +20,10 @@ const server = http.createServer(app);
 initSocket(server);
 
 app.use(cors({
-  origin: function (origin, callback) {
-    const allowedOrigins = [
-      CLIENT_URL,
-      'https://inventory-management-system-fronten-tau.vercel.app',
-      'http://localhost:5173',
-      'http://localhost:3000',
-    ];
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(null, true);
-    }
-  },
+  origin: true,
   credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
 }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
